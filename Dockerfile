@@ -1,4 +1,4 @@
-FROM gregory90/base:latest
+FROM ubuntu:14.04
 
 RUN mkdir -p /app
 ADD run /app/run
