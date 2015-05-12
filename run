@@ -9,12 +9,11 @@ set +e
 remove_images() {
   while true
   do
-    echo "Cleaning host"
+    echo "Sleeping..."
+    sleep $TIMEOUT
+    echo "Cleaning host..."
     docker rm $(docker ps -a -q)
     docker rmi $(docker images -q) 
-
-    echo "Sleep"
-    sleep $TIMEOUT
   done
 }
 
