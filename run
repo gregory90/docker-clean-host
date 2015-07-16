@@ -11,7 +11,7 @@ remove_images() {
   do
     echo "Cleaning host..."
     docker rm $(docker ps -a -q)
-    docker rmi $(docker images | grep -v "none" | awk '{print $3}')
+    docker rmi $(docker images | grep -vE '(none|gregory90/nodejs|gregory90/php|gregory90/golang)' | awk '{print $3}')
     echo "Sleeping..."
     sleep $TIMEOUT
   done
