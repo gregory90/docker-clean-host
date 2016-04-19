@@ -4,16 +4,20 @@ if [ -z "$TIMEOUT" ] ; then
     TIMEOUT=14400 # 4 hours
 fi
 
+if [ -z "$PROTECTED_IMAGES" ] ; then
+  PROTECTED_IMAGES="(none)" 
+fi
+
 set +e
 
 remove_images() {
   while true
   do
+    sleep $TIMEOUT
     echo "Cleaning host..."
     docker rm $(docker ps -a -q)
-    docker rmi $(docker images | grep -vE '(none|gregory90/nodejs|gregory90/php|gregory90/golang)' | awk '{print $3}')
+    docker rmi $(docker images | grep -vE $PROTECTED_IMAGES | awk '{print $3}')
     echo "Sleeping..."
-    sleep $TIMEOUT
   done
 }
 

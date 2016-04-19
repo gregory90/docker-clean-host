@@ -7,4 +7,4 @@ docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/
 
 ##### Environment variables
 TIMEOUT - how often clean host, in seconds,
-
+PROTECTED_IMAGES - images which shouldn't be deleted
